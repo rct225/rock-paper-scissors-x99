@@ -17,6 +17,25 @@ function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType, moveTwoV
   var moveTypes = [moveOneType, moveTwoType, moveThreeType];
   var moveValues = [moveOneValue, moveTwoValue, moveThreeValue];
 
+  for (var i = 0; i < moveTypes.length; i++) {
+    if (moves.indexOf(moveTypes[i]) === -1) {
+      return undefined;
+    }
+  }
+
+  for (var i = 0; i< moveValues.length; i++) {
+    if (!moveValues[i]) {
+      return undefined;
+    }
+    if (moveValues[i] < 1 || moveValues[i] > 99) {
+      return undefined;
+    }
+  }
+
+  if ( moveValues.reduce((a,b) => a + b, 0) > 99) {
+    return undefined;
+  }
+
   if (player === 'Player One') {
     playerOneMoveOneType = moveOneType;
     playerOneMoveTwoType = moveTwoType;
