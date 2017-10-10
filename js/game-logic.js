@@ -112,3 +112,43 @@ function getGameWinner() {
     return 'Tie';
   }
 }
+
+function shuffle(array) {
+  var i = 0
+    , j = 0
+    , temp = null
+
+  for (i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  return array;
+}
+
+function generateValues() {
+  var max = 99;
+  var r1 = randomBetweewn(1, max-2);
+  var r2 = randomBetweewn(1, max-1-r1);
+  var r3 = max - r1 -r2;
+  return [r1,r2,r3];
+}
+
+function randomBetweewn(min, max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function setComputerMoves() {
+  var moves = ['rock', 'paper', 'scissors'];
+  moves = shuffle(moves);
+  playerTwoMoveOneType = moves[0];
+  playerTwoMoveTwoType = moves[1];
+  playerTwoMoveThreeType = moves[2];
+  var values = generateValues();
+  playerTwoMoveOneValue = values[0];
+  playerTwoMoveTwoValue = values[1];
+  playerTwoMoveThreeValue = values[2];
+
+}
