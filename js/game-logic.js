@@ -57,7 +57,7 @@ function winner(playerOneMove, playerOneMoveValue, playerTwoMove, playerTwoMoveV
   if (!playerOneMove || !playerOneMoveValue || !playerTwoMove || !playerTwoMoveValue) {
     return null;
   }
-  
+
   var rules = {'rock': 'paper', 'scissors': 'rock', 'paper': 'scissors'};
 
   if (rules[playerOneMove] === playerTwoMove) {
@@ -88,5 +88,27 @@ function getRoundWinner(round) {
       playerTwoMoveThreeType, playerTwoMoveThreeValue);
   } else {
     return null;
+  }
+}
+
+function getGameWinner() {
+  var results = [1,2,3].map( round => getRoundWinner(round));
+  var playerOne = 0;
+  var playerTwo = 0;
+  for (var i = 0; i < results.length; i++) {
+    if (results[i] === 'Player One') {
+      playerOne++;
+    } else if (results[i] === 'Player Two') {
+      playerTwo++
+    } else if (results[i] === null) {
+      return null;
+    }
+  }
+  if (playerOne > playerTwo) {
+    return 'Player One';
+  } else if (playerTwo > playerOne) {
+    return 'Player Two';
+  } else if (playerOne == playerTwo) {
+    return 'Tie';
   }
 }
