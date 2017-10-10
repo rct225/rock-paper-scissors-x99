@@ -52,3 +52,35 @@ function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType, moveTwoV
     playerTwoMoveThreeValue = moveThreeValue;
   }
 };
+
+function winner(playerOneMove, playerOneMoveValue, playerTwoMove, playerTwoMoveValue) {
+  var rules = {'rock': 'paper', 'scissors': 'rock', 'paper': 'scissors'};
+
+  if (rules[playerOneMove] === playerTwoMove) {
+    return 'Player Two';
+  } else if (rules[playerTwoMove] === playerOneMove) {
+      return 'Player One';
+  } else {
+    if ( playerOneMoveValue > playerTwoMoveValue ) {
+      return 'Player One';
+    } else if (playerTwoMoveValue > playerOneMoveValue) {
+      return 'Player Two';
+    } else if (playerOneMoveValue === playerTwoMoveValue ) {
+      return 'Tie';
+    }
+  }
+
+}
+
+function getRoundWinner(round) {
+  if (round === 1) {
+    return winner(playerOneMoveOneType, playerOneMoveOneValue,
+      playerTwoMoveOneType, playerTwoMoveOneValue);
+  } else if (round === 2) {
+    return winner(playerOneMoveTwoType, playerOneMoveTwoValue,
+      playerTwoMoveTwoType, playerTwoMoveTwoValue);
+  } else if (round === 3) {
+    return winner(playerOneMoveThreeType, playerOneMoveThreeValue,
+      playerTwoMoveThreeType, playerTwoMoveThreeValue);
+  }
+}
